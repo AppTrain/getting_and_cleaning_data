@@ -37,7 +37,6 @@ full_phone_readings = rbind(load_readings('test'),load_readings('train'))
 # angles computed from vecotors containing means are not included either.
 # Grab colum names from the full data.frame
 column_names = colnames(full_phone_readings)
-#column_names = as.vector(read.csv('features.txt',F,sep="")[,2])
 #now grab the ones with 'mean()'or 'std()', also need activity and subject
 cols = grep("\\_mean(\\_|$)|\\_std(\\_|$)|activity|subject",column_names,value=T)
 
@@ -66,10 +65,10 @@ print(head(phone_activity_stats))
 
 #STEP 5:  Create an independent tidy data set 
 # with the average of each variable for each activity and each subject.
-activities = melt(phone_activity_stats,id=c("activity","subject_id"))
+
 if (F)
 {  
-  
+  activities = melt(phone_activity_stats,id=c("activity","subject_id"))  
 act = dcast(activities,activity ~ variable,mean)
 subject = dcast(activities,subject_id ~ variable,mean)
 acts = t(act)
