@@ -11,4 +11,4 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 After unzipping the file, install the script in the "UCI HAR Dataset" directory, Set that directory as the working directory in R, then source the script.
 
-
+The output of the script is stored in a file called grouped_answer.txt

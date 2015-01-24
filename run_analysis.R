@@ -63,44 +63,45 @@ levels(phone_activity_stats$activity) = sapply(as.vector(tolower(
 # Anyway the phone_activity_stats data.frame 
 print(head(phone_activity_stats))
 
-#STEP 5:  Create an independent tidy data set 
-# with the average of each variable for each activity and each subject.
+# Code below was for an alternate solution not grouping the data
 
-if (F)
-{  
-  activities = melt(phone_activity_stats,id=c("activity","subject_id"))  
-act = dcast(activities,activity ~ variable,mean)
-subject = dcast(activities,subject_id ~ variable,mean)
-acts = t(act)
-subs = t(subject)
-# The getting there data.frame is the solution to listing averages separately for each 
-# activity and subject.One possible way to interpret the assignment.  Unless thos turns out to be
-# the recomended way, I'll leave this dataset alone for now.
-getting_there = cbind(acts,subs)
-}
-
+# if (F)
+# {  
+#   activities = melt(phone_activity_stats,id=c("activity","subject_id"))  
+# act = dcast(activities,activity ~ variable,mean)
+# subject = dcast(activities,subject_id ~ variable,mean)
+# acts = t(act)
+# subs = t(subject)
+# # The getting there data.frame is the solution to listing averages separately for each 
+# # activity and subject.One possible way to interpret the assignment.  Unless thos turns out to be
+# # the recomended way, I'll leave this dataset alone for now.
+# getting_there = cbind(acts,subs)
+# }
 
 
-# Have the answer, Literally tidying up now
-if (F) {
-colnames(getting_there) = getting_there[1,]
-getting_there = getting_there[-1,]
-getting_there = cbind(row.names(getting_there),getting_there)
-row.names(getting_there) <- NULL 
-colnames(getting_there)[1] = "Smartphone Measurement"
-# decided to leave underscores for easier access to the table variables from R
-#colnames(getting_there) = gsub("_"," ",colnames(getting_there))
-colnames(getting_there) = tolower(colnames(getting_there))
-colnames(getting_there) = sapply(colnames(getting_there),capitalize)
-colnames(getting_there) = gsub("(\\d+)","Subject_\\1",colnames(getting_there))
 
-write.table(getting_there,"answer.txt",row.name=FALSE)
-}
+# # Have the answer, Literally tidying up now
+# if (F) {
+# colnames(getting_there) = getting_there[1,]
+# getting_there = getting_there[-1,]
+# getting_there = cbind(row.names(getting_there),getting_there)
+# row.names(getting_there) <- NULL 
+# colnames(getting_there)[1] = "Smartphone Measurement"
+# # decided to leave underscores for easier access to the table variables from R
+# #colnames(getting_there) = gsub("_"," ",colnames(getting_there))
+# colnames(getting_there) = tolower(colnames(getting_there))
+# colnames(getting_there) = sapply(colnames(getting_there),capitalize)
+# colnames(getting_there) = gsub("(\\d+)","Subject_\\1",colnames(getting_there))
+# 
+# write.table(getting_there,"answer.txt",row.name=FALSE)
+# }
 
 
 # The other interpretation is to assume the instructors wanted 'group by' functionality 
 # of the subjects and activites.
 
+#STEP 5:  Create an independent tidy data set 
+# with the average of each variable for each activity and each subject.
 activity_table = data.table(phone_activity_stats)[order(subject_id,activity)]
 # data.table works nicely for running group_by querries, lapply of mean over the subset (.SD)
 # gets the answer quickly.

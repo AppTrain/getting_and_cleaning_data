@@ -26,7 +26,8 @@ You should create one R script called run_analysis.R that does the following.
 
 ## Variables
 
-### From the downloaded README
+(From the downloaded README)
+
 The acceleration signal was separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ). Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals).
 
 The acceleration signal from the smartphone accelerometer X axis in standard gravity units 'g'. The angular velocity vector measured by the gyroscope are radians/second. The data was already normalized and bounded within [-1,1]
@@ -104,8 +105,14 @@ Activitiy labels from the activity_labels.txt file are added to the activity col
 The data.frame is converted to an R data.table to take advantage of grouping functionality.
 
     mean_by_activity_and_subject = activity_table[,lapply(.SD,mean),by = c('subject_id','activity')]
+
+## Result
     
-This results in 180 rows (30 subjects x 6 Activites) and 68 columns (66 variables + subject + activity.) , with each row containing the mean over each subject and activity combination for each of the 66 variables. 
+This results is a table of 180 rows (30 subjects x 6 Activites) and 68 columns (66 variables + subject + activity.) , with each row containing the mean over each subject and activity combination for each of the 66 variables. 
+
+The output of the script is stored in a file called grouped_answer.txt
+
+
 
 
 ##License:
