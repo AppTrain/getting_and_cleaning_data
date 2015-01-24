@@ -4,7 +4,7 @@ Coursera project
 The run_analysis.R file is a solution to the Course project for the Getting and Clening Data course at http://coursera.com
 The script requires 2 packages,
 
-    install.packages(data.table","reshape2")
+    install.packages("data.table","reshape2")
 
 run_analysis.R is designed to run with data from the Human Activity Recognition Using Smartphones downloadable here:
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
